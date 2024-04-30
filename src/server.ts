@@ -1,16 +1,24 @@
-// Importando os módulos necessários
 import express from "express";
+import sequelize from "./infra/sequelize";
+import setupRouter from "./interfaces/router";
 
-// Criando uma instância do aplicativo Express
 const app = express();
 
-// Definindo uma rota básica
-app.get("/", (req, res) => {
-  res.send("Olá, mundo!");
-});
-
-// Iniciando o servidor na porta 3000
 const port = 3000;
 app.listen(port, () => {
   console.log(`Servidor rodando na porta ${port}`);
 });
+
+app.use(async (_, res, next) => {
+  try {
+    await sequelize.authenticate();
+    next();
+  } catch (error) {
+    res.status(503).json({
+      message:
+        "Problemas de conexão. Entre em contato com um administrador, ou tente novamente mais tarde.",
+    });
+  }
+});
+
+app.use(setupRouter());
