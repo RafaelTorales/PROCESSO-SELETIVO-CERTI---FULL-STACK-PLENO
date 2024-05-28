@@ -11,6 +11,7 @@ function setupRouter() {
     const router = express_1.default.Router();
     const userService = new user_service_1.default();
     const userController = new user_controller_1.default(userService);
+    router.use(express_1.default.json());
     router.route("/").get((req, res) => res.status(200).json({ response: "OK" }));
     // User
     router.post(`/users`, (req, res) => userController.create(req, res));

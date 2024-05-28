@@ -1,11 +1,12 @@
 {
-    "compilerOptions": {
-      "target": "es2017",
-      "module": "commonjs",
-      "outDir": "./dist",
-      "strict": true,
-      "esModuleInterop": true
-    },
-    "include": ["src/**/*.ts"]
+  "compilerOptions": {
+    "allowSyntheticDefaultImports": true,
+    "target": "es6",
+    "lib": ["es2017", "es2021", "DOM"],
+    "outDir": "./dist",
+    "baseUrl": "",
+    "module": "commonjs",
+    "esModuleInterop": true,
+    "resolveJsonModule": true
   }
-  
+}

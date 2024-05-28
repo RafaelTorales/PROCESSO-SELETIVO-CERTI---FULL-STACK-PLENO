@@ -7,6 +7,8 @@ export function setupRouter(): express.Router {
   const userService = new UserService();
   const userController = new UserController(userService);
 
+  router.use(express.json());
+
   router.route("/").get((req, res) => res.status(200).json({ response: "OK" }));
 
   // User
